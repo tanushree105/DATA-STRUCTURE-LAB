@@ -1,0 +1,63 @@
+#include<stdio.h>
+			case 3:
+					if(root == NULL) {
+						printf("Binary Search Tree is empty.\n");
+					}
+					else {
+						printf("Elements of the BST (pre-order traversal): ");
+						preorderInBST(root);
+						printf("\n");
+						}
+					break;
+			case 4:
+					if(root == NULL) {
+						printf("Binary Search Tree is empty.\n");
+					}
+					else {
+						printf("Elements of the BST (post-order traversal): ");
+						postorderInBST(root);
+						printf("\n");
+						}
+					break;
+			case 5: 
+					printf("Enter an element to be searched : ");
+					scanf("%d", &x);
+					if( searchNodeInBST(root,x) == NULL) 
+						printf("Element not found in the binary search tree.\n");
+					else
+						printf("Element found in the binary search tree.\n");
+					break;
+			case 6:
+					exit(0);
+		}
+	}
+}
+
+struct node {
+void postorderInBST(BSTNODE root) {
+if(root!=NULL){
+		postorderInBST(root->left);
+		postorderInBST(root->right);
+		printf("%d ",root->data);
+}}
+BSTNODE insertNodeInBST(BSTNODE node, int ele) {
+if(node==NULL){
+		printf("Successfully inserted.\n");
+		return newNodeInBST(ele);
+	}else if(ele<node->data){
+		node->left = insertNodeInBST(node->left,ele);
+	}else if(ele > node->data){
+		node -> right = insertNodeInBST(node->right, ele);
+	}else{
+		printf("Element already exists in BST.\n");}
+	return node;
+}
+
+BSTNODE searchNodeInBST(BSTNODE root, int ele) {
+if(root==NULL || root->data == ele){
+		return root;}
+	else if(ele< root->data){
+		return searchNodeInBST(root->left,ele);}
+	else if(ele > root->data){
+		return searchNodeInBST(root->right,ele);}
+	return NULL;}
